@@ -7,10 +7,10 @@ import {logo, menu, close} from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
-
+  const [Toggle, setToggle] = useState(false);
 
   return (
-    <nav className={`${styles.paddingX} w-full px-0 flex items-center fixed py-5 top-0 z-20 bg-primary`}>
+    <nav className={`${styles.paddingX} w-full flex items-center fixed py-5 top-0 z-20 bg-primary`}>
       <div className="w-full flex justify-between items-center max-w-7x1 mx-auto">
           <Link to={"/"} className='flex items-center gap-2' onClick={()=>{
             setActive('');
@@ -18,7 +18,7 @@ const Navbar = () => {
 
           }}>
             <img src={logo} alt='logo' className='w-9 h-9 object-contain'/>
-            <p className='text-white text-[18px] font-bold cursor-pointer'>Nirmit<span className='sm:block hidden'>| Sparks</span></p>
+            <p className='text-white text-[18px] font-bold cursor-pointer flex'>Nirmit &nbsp;<span className='sm:block hidden'>| Sparks</span></p>
           </Link>
           <ul className="list-none hidden sm:flex flex-row gap-10">
             {navLinks.map((link) => (
@@ -37,7 +37,28 @@ const Navbar = () => {
           </ul>
 
           <div className="sm:hidden flex flex-1 justify-end items-center">
-            <img src={menu} alt="menu" className='w-[28px] h-[28px]'/>
+            <img src={Toggle ? close : menu} alt="menu" className='w-[28px] h-[28px]'
+            onClick={() => {setToggle(!Toggle)}}/>
+            <div className={`${!Toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}>
+          <ul className="list-none flex items-start justify-end flex-col gap-4">
+            {navLinks.map((link) => (
+              <li 
+              key={link.id} 
+              className={`${active === link.title ? "text-white" : "text-secondary"} font-poppins font-medium text-[16px] cursor-pointer`} 
+              onClick={() => {
+                setActive(link.title);
+                setToggle(!Toggle);
+              }}
+              
+              >
+                <a href={`#${link.id}`}>
+                {link.title}
+                </a>
+              </li>
+              
+            ))}
+          </ul>
+            </div>
           </div>
       </div>
     </nav>
