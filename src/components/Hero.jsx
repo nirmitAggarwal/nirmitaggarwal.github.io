@@ -17,9 +17,8 @@ const Hero = () => {
             <span className="text-[#ffa154]"> Nirmit</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            🚀I build fast, responsive, and accessible web apps using React, Node.js, and MongoDB.
+           I build fast and responsive web apps.
             <br className="sm:block hidden"/>
-            🤖I'm also into robotics and IoT. 
           </p>
         </div>
       </div>
